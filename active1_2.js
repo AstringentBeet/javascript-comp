@@ -1,14 +1,9 @@
-
-/*Write a program to calculate the total price of your phone purchase. You will keep purchasing phones (hint: loop!) until you run 
-out of money in your bank account. You'll also buy accessories for each phone as long as your purchase amount is below your mental spending threshold.
-After you've calculated your purchase amount, add in the tax, then print out the calculated purchase amount, properly formatted.
-Finally, check the amount against your bank account balance to see if you can afford it or not.
-You should set up some constants for the "tax rate," "phone price," "accessory price," and "spending threshold," as well as a variable
-for your "bank account balance.""
-You should define functions for calculating the tax and for formatting the price with a "$" and rounding to two decimal places.
-
-Bonus Challenge: Try to incorporate input into this program, perhaps with the prompt(..) covered in "Input" earlier. 
-You may prompt the user for their bank account balance, for example. Have fun and be creative!*/
+/*Based off the exercise from YDKJS: Up and Going, this partly interactive module has the user buying multiple phones based
+and randomly generated funds provided by their 'boss'. They are given the choice to shop for phones and accerories between 
+three different brands: Apple, Google, and Microsoft; depending on which company they choose determines the price and 
+family the phone belongs to. If they reach their spending threshold for phones (dependent on the company), they will be
+prompted to purchase what little accesories they can (the acceroies must belong to the respective phone brand). Once they
+cannot purchase anymore phones or accerories, the 'mini-game' ends.*/
 
 //main function for inititalizing a set number for spending.
 var base1 = function (amount) {
@@ -69,7 +64,6 @@ var cycle = function(_un, deux, trois){
 //reduces the amount of individual prompts being made.
     let repeat = function(second) {
         second = prompt("should I buy another?");
-
         //the accesory function
         let accessory = function(third){
             third = prompt("What about accesories? They cost" + deux + "bucks a pop.");
@@ -80,7 +74,6 @@ var cycle = function(_un, deux, trois){
 
             }
         }
-
         //back to the main function
         while(second == "yes"){
             if(uno <= 100.00){

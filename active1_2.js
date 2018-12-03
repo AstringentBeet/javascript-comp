@@ -24,7 +24,7 @@ var uno = base1();
 
 // main function for initializing taxes.
 const tax =  function(og) {
-    let rate = .08;
+    const rate = 0.08;
     rate * og;
     return rate;
 }
@@ -62,7 +62,8 @@ let repeat = function(second){
 
         }
     }
-    //back to
+
+    //back to the main function
     while(second == "yes"){
         if(uno <= 100.00){
             alert("Oh? Looks like I reached my limit.");

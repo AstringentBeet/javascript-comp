@@ -48,35 +48,6 @@ var limit = function() {
 
 }
 
-//reduces the amount of individual prompts being made.
-let repeat = function(second){
-    second = prompt("should I buy another?");
-
-    //the accesory function
-    let accessory = function(third){
-        third = prompt("What about accesories? They cost" + deux + "bucks a pop.");
-        while(par(third) == "yes") {
-            un -= deux;
-        } 
-        if(par(third) == "no") {
-
-        }
-    }
-
-    //back to the main function
-    while(second == "yes"){
-        if(uno <= 100.00){
-            alert("Oh? Looks like I reached my limit.");
-            accessory();
-        }
-        un -= uno - tax(uno);
-        return second;
-    }
-    if(second == "no"){
-        alert("oh well");
-    }
-}
-
 //phone prices
 var phone = {
     app : sum(200.00),
@@ -92,13 +63,38 @@ var acc =  {
 }
 
 //the real juice of the 'bases'. Trois should be filled as the respective company's phone.
-var cycle = function(un, deux, trois){
+var cycle = function(_un, deux, trois){
     let glance = prompt("The new" + trois + "looks nice. But is it worth it?");
     repeat(par(glance));
-} /*else if(par(glance) == "no") {
-        questaire(begin);
+//reduces the amount of individual prompts being made.
+    let repeat = function(second) {
+        second = prompt("should I buy another?");
+
+        //the accesory function
+        let accessory = function(third){
+            third = prompt("What about accesories? They cost" + deux + "bucks a pop.");
+            while(par(third) == "yes") {
+                un -= deux;
+            } 
+            if(par(third) == "no") {
+
+            }
+        }
+
+        //back to the main function
+        while(second == "yes"){
+            if(uno <= 100.00){
+                alert("Oh? Looks like I reached my limit.");
+                accessory();
+            }
+            un -= uno - tax(uno);
+            return second;
+        }
+        if(second == "no"){
+            alert("oh well");
+        }
     }
-}*/
+}
     
 
 /*function that cycles through commerce-related questions involving the company they want, 

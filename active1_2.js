@@ -1,5 +1,5 @@
 /*Based off the exercise from YDKJS: Up and Going, this partly interactive module has the user buying multiple phones based
-and randomly generated funds provided by their 'boss'. They are given the choice to shop for phones and accerories between 
+on randomly generated funds provided by their 'boss'. They are given the choice to shop for phones and accerories between 
 three different brands: Apple, Google, and Microsoft; depending on which company they choose determines the price and 
 family the phone belongs to. If they reach their spending threshold for phones (dependent on the company), they will be
 prompted to purchase what little accesories they can (the acceroies must belong to the respective phone brand). Once they
@@ -38,10 +38,8 @@ let par = function (word) {
     return word.toLowerCase()
 }
 
-//Creates threshold and determines the utmost limit depending on the brand and product chosen.
-var limit = function() {
-
-}
+//creates limit 
+const limit = 200.00
 
 //phone prices
 var phone = {
@@ -57,26 +55,27 @@ var acc =  {
     googacc : sum(50.00)
 }
 
-//the real juice of the 'bases'. Trois should be filled as the respective company's phone.
+//the real juice of the 'bases'. Trois should be filled as the respective company's phone. un: phone, deux: accessory, trois: phone title.
 var cycle = function(_un, deux, trois){
     let glance = prompt("The new" + trois + "looks nice. But is it worth it?");
     repeat(par(glance));
-//reduces the amount of individual prompts being made.
+    //reduces the amount of individual prompts being made.
     let repeat = function(second) {
-        second = prompt("should I buy another?");
-        //the accesory function
+        //the accesory function; included in repeat() due to redundant nature.
         let accessory = function(third){
             third = prompt("What about accesories? They cost" + deux + "bucks a pop.");
             while(par(third) == "yes") {
                 un -= deux;
+                
             } 
             if(par(third) == "no") {
-
+                
             }
         }
+        second = prompt("should I buy another?");
         //back to the main function
         while(second == "yes"){
-            if(uno <= 100.00){
+            if(uno <= limit && deux >= limit) {
                 alert("Oh? Looks like I reached my limit.");
                 accessory();
             }
@@ -93,8 +92,7 @@ var cycle = function(_un, deux, trois){
 /*function that cycles through commerce-related questions involving the company they want, 
 how many phones they want to purchase, any accesories, and updates their spending threshold*/
 var questaire = function(start) {
-    let jest = start.toLowerCase();
-    if(jest == "apple"){
+    if(par(start) == "apple"){
         cycle(phone.app, acc.appacc, "iPhone");
         }
 

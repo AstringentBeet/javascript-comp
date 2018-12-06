@@ -58,33 +58,37 @@ var acc =  {
 //the real juice of the 'bases'. Trois should be filled as the respective company's phone. un: phone, deux: accessory, trois: phone title.
 var cycle = function(_un, deux, trois){
     let glance = prompt("The new" + trois + "looks nice. But is it worth it?");
-    repeat(par(glance));
+    if(par(glance) == "yes") {
+        uno -= tax(un);
+        repeat();
+    }
     //reduces the amount of individual prompts being made.
-    let repeat = function(second) {
+    let repeat = function() {
         //the accesory function; included in repeat() due to redundant nature.
-        let accessory = function(third){
-            third = prompt("What about accesories? They cost" + deux + "bucks a pop.");
+        let accessory = function(){
+            let third = prompt("Now there's accesories. They cost " + deux + " bucks a pop. Should I buy one?");
             while(par(third) == "yes") {
-                un -= deux;
-                
+                uno -= deux;
+                accessory();
             } 
             if(par(third) == "no") {
-                
+                questaire();
             }
         }
-        second = prompt("should I buy another?");
+        let second = prompt("should I buy another?");
         //back to the main function
-        while(second == "yes"){
+        while(par(second) == "yes"){
             if(uno <= limit && deux >= limit) {
-                alert("Oh? Looks like I reached my limit.");
+                alert("Oh? Looks like I have only enough for accessories.");
                 accessory();
             }
-            un -= uno - tax(uno);
-            return second;
+            uno -= un - tax(un);
+            repeat();
         }
         if(second == "no"){
             alert("oh well");
         }
+        return alert("I have " + uno + " left.");
     }
 }
     

@@ -50,9 +50,9 @@ var phone = {
 
 //accesory pricing (didn't see the need to give Microsoft a more expensive acc).
 var acc =  {
-    micracc : sum(30.00), 
     appacc : sum(60.00),
-    googacc : sum(50.00)
+    googacc : sum(50.00),
+    micracc : sum(30.00) 
 }
 
 //the real juice of the 'bases'. Trois should be filled as the respective company's phone. un: phone, deux: accessory, trois: phone title.
@@ -67,23 +67,27 @@ var cycle = function(_un, deux, trois){
         //the accesory function; included in repeat() due to redundant nature.
         let accessory = function(){
             let third = prompt("Now there's accesories. They cost " + deux + " bucks a pop. Should I buy one?");
-            while(par(third) == "yes") {
-                uno -= deux;
-                accessory();
+            if(par(third) == "yes") {
+                uno -= (deux - tax(deux));
+                let fourth = prompt("Should I buy another?");
+                while(par(fourth) == "yes") {
+                    uno -= (deux - tax(deux));
+                    fourth = prompt("How about another?")
+                }
             } 
             if(par(third) == "no") {
                 questaire();
             }
         }
         let second = prompt("should I buy another?");
-        //back to the main function
         while(par(second) == "yes"){
-            if(uno <= limit && deux >= limit) {
-                alert("Oh? Looks like I have only enough for accessories.");
-                accessory();
-            }
             uno -= un - tax(un);
-            repeat();
+            second = prompt("Should I get yet another?");
+        }
+        //creates the limiter.
+        if(uno <= limit && deux >= limit) {
+            alert("Oh? Looks like I have only enough for accessories.");
+            accessory();
         }
         if(second == "no"){
             alert("oh well");
@@ -97,9 +101,16 @@ var cycle = function(_un, deux, trois){
 how many phones they want to purchase, any accesories, and updates their spending threshold*/
 var questaire = function(start) {
     if(par(start) == "apple"){
-        cycle(phone.app, acc.appacc, "iPhone");
+        cycle(phone.app, acc.appacc, "iPhone Xs");
+        } else if(par(start) == "google") {
+            cycle(phone.goog, acc.googacc, "Pixel 3");
+        } else if(par(start) == "micorsoft") {
+            cycle(phone.micro, acc.micracc, "Lumia 950 XL");
+        } else {
+            alert("I should be sure to choose one of those options");
+            /*modified questaire function*/
         }
-
+        
     }
 
 alert("b0ss: 'Here's your allowance for the company phones.'");

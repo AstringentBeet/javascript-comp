@@ -1,4 +1,4 @@
-/*Based off the exercise from YDKJS: Up and Going, this partly interactive module has the user buying multiple phones based
+/*Based off the exercise from 'YDKJS: Up and Going', this partly interactive module has the user buying multiple phones based
 on randomly generated funds provided by their 'boss'. They are given the choice to shop for phones and accerories between 
 three different brands: Apple, Google, and Microsoft; depending on which company they choose determines the price and 
 family the phone belongs to. If they reach their spending threshold for phones (dependent on the company), they will be
@@ -6,31 +6,22 @@ prompted to purchase what little accesories they can (the acceroies must belong 
 cannot purchase anymore phones or accerories, the 'mini-game' ends.*/
 
 //main function for inititalizing a set number for spending.
-var base1 = function (amount) {
-    do {
-    let bank = ((Math.random() * 100)*50) + 900;
-    amount = bank.toFixed(2);     
-    } while (amount > 1000.00);
-        return amount;
-}
-
-//fully establishes base1() as a variable
-var uno = base1();
+var uno = 5000.00;
 
 // main function for initializing taxes.
-const tax =  function(og) {
-    const rate = 0.08;
-    rate * og;
-    return rate;
+var tax =  function(og) {
+    let rate = 0.08;
+     og *= rate;
+    return og;
 }
 
 //adds tax deducted price and dollar sign to items.
 var sum = function(add, sub){
     let total = add - sub;
     if(sub === undefined){
-        return "$" + add;
+        return add;
     }
-    return "$" + total;
+    return total;
 }
 
 //makes the process of comparing prompts less tedious. 
@@ -55,69 +46,51 @@ var acc =  {
     micracc : sum(30.00) 
 }
 
-//the real juice of the 'bases'. Trois should be filled as the respective company's phone. un: phone, deux: accessory, trois: phone title.
-var cycle = function(_un, deux, trois){
-    let glance = prompt("The new" + trois + "looks nice. But is it worth it?");
-    if(par(glance) == "yes") {
-        uno -= tax(un);
-        repeat();
+
+//the real juice of the 'bases'. un: funds, deux: phone, trois: accessories, quatre: phone title.
+var cycle = function(un, deux, trois, quatre) {
+    let glance = prompt("The new " + quatre + " looks nice. But is it worth it?");
+    while(par(glance) == "yes") {
+        un -= deux - tax(deux);
+        alert("You have " + un + " left in your spending funds.");
+        glance = prompt("Should I buy another " + quatre + " ?");
     }
-    //reduces the amount of individual prompts being made.
-    let repeat = function() {
-        //the accesory function; included in repeat() due to redundant nature.
-        let accessory = function(){
-            let third = prompt("Now there's accesories. They cost " + deux + " bucks a pop. Should I buy one?");
-            if(par(third) == "yes") {
-                uno -= (deux - tax(deux));
-                let fourth = prompt("Should I buy another?");
-                while(par(fourth) == "yes") {
-                    uno -= (deux - tax(deux));
-                    fourth = prompt("How about another?")
-                }
-            } 
-            if(par(third) == "no") {
-                questaire();
-            }
-        }
-        let second = prompt("should I buy another?");
-        while(par(second) == "yes"){
-            uno -= un - tax(un);
-            second = prompt("Should I get yet another?");
-        }
-        //creates the limiter.
-        if(uno <= limit && deux >= limit) {
-            alert("Oh? Looks like I have only enough for accessories.");
-            accessory();
-        }
-        if(second == "no"){
-            alert("oh well");
-        }
-        return alert("I have " + uno + " left.");
+    if(par(glance) == "no") {
+       return accessory(deux, trois);
     }
 }
-    
+
+//the accesory function; included in repeat() due to redundant nature.
+var accessory = function(price, access) {
+    let third = prompt("Now there's accesories. They cost " + access + " bucks a pop. Should I buy one?");
+    while(par(third) == "yes") {
+        price -= access - (tax(access));
+        thrid = prompt("How about another?")
+    } 
+    if(par(third) == "no") {
+       return questaire(begin = prompt("Alright...there's Apple, Google, and Microsoft; 'The (somewhat) Big Three.' Where to?"));
+    }
+}
 
 /*function that cycles through commerce-related questions involving the company they want, 
 how many phones they want to purchase, any accesories, and updates their spending threshold*/
 var questaire = function(start) {
     if(par(start) == "apple"){
-        cycle(phone.app, acc.appacc, "iPhone Xs");
+        cycle(uno, phone.app, acc.appacc, "iPhone Xs");
         } else if(par(start) == "google") {
-            cycle(phone.goog, acc.googacc, "Pixel 3");
+            cycle(uno, phone.goog, acc.googacc, "Pixel 3");
         } else if(par(start) == "micorsoft") {
-            cycle(phone.micro, acc.micracc, "Lumia 950 XL");
+            cycle(uno, phone.micro, acc.micracc, "Lumia 950 XL");
         } else {
             alert("I should be sure to choose one of those options");
-            /*modified questaire function*/
+            questaire(begin = prompt("Alright...there's Apple, Google, and Microsoft; 'The (somewhat) Big Three.' Where to first?"));
         }
-        
-    }
+}
 
 alert("b0ss: 'Here's your allowance for the company phones.'");
-alert("* hands you " + uno + " dollars.");
+alert("* hands you " + uno + " dollars.*");
 alert("b0ss: It's...what we can afford at the time. Use this to purchase the phones you see fit for the employees.");
 alert("'Don't be afraid to purchase any accesories for the phones as well, so long as you can afford it ;)'");
 
 //hopefully initiates questaire function.
-var begin = prompt("Alright...there's Apple, Google, and Microsoft; 'The (somewhat) Big Three.' Where to first?");
-questaire(begin);
+questaire(begin = prompt("Alright...there's Apple, Google, and Microsoft; 'The (somewhat) Big Three.' Where to first?"));

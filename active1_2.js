@@ -51,35 +51,35 @@ var acc =  {
 var cycle = function(un, deux, trois, quatre) {
     let glance = prompt("The new " + quatre + " looks nice. But is it worth it?");
     while(par(glance) == "yes") {
-        un -= deux - tax(deux);
+        un -= deux + tax(deux);
         alert("You have " + un + " left in your spending funds.");
         glance = prompt("Should I buy another " + quatre + " ?");
     }
     if(par(glance) == "no") {
-       return accessory(deux, trois);
+       return accessory(un, trois);
     }
 }
 
 //the accesory function; included in repeat() due to redundant nature.
-var accessory = function(price, access) {
+var accessory = function(funds, access) {
     let third = prompt("Now there's accesories. They cost " + access + " bucks a pop. Should I buy one?");
     while(par(third) == "yes") {
-        price -= access - (tax(access));
-        thrid = prompt("How about another?")
+        funds -= access + (tax(access));
+        alert("you have " + funds.toFixed() + " left to spend with");
+        third = prompt("How about another?");
     } 
     if(par(third) == "no") {
-       return questaire(begin = prompt("Alright...there's Apple, Google, and Microsoft; 'The (somewhat) Big Three.' Where to?"));
-    }
+        questaire(begin = prompt("Alright...there's Apple, Google, and Microsoft; 'The (somewhat) Big Three.' Where to?"));
+     }
 }
 
-/*function that cycles through commerce-related questions involving the company they want, 
-how many phones they want to purchase, any accesories, and updates their spending threshold*/
+//function that cycles through commerce-related questions
 var questaire = function(start) {
     if(par(start) == "apple"){
         cycle(uno, phone.app, acc.appacc, "iPhone Xs");
         } else if(par(start) == "google") {
             cycle(uno, phone.goog, acc.googacc, "Pixel 3");
-        } else if(par(start) == "micorsoft") {
+        } else if(par(start) == "microsoft") {
             cycle(uno, phone.micro, acc.micracc, "Lumia 950 XL");
         } else {
             alert("I should be sure to choose one of those options");

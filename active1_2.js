@@ -1,5 +1,5 @@
 /*Based off the exercise from 'YDKJS: Up and Going', this partly interactive module has the user buying multiple phones based
-on randomly generated funds provided by their 'boss'. They are given the choice to shop for phones and accerories between 
+on funds provided by their 'boss'. They are given the choice to shop for phones and accerories between 
 three different brands: Apple, Google, and Microsoft; depending on which company they choose determines the price and 
 family the phone belongs to. If they reach their spending threshold for phones (dependent on the company), they will be
 prompted to purchase what little accesories they can (the acceroies must belong to the respective phone brand). Once they
@@ -53,14 +53,18 @@ var cycle = function(un, deux, trois, quatre) {
     while(par(glance) == "yes") {
         un -= deux + tax(deux);
         alert("You have " + un + " left in your spending funds.");
-        glance = prompt("Should I buy another " + quatre + " ?");
+        let look = prompt("Should I buy another " + quatre + " ?");
+        if(par(look) == "no"){
+            return accessory(un, trois);
+        }
     }
     if(par(glance) == "no") {
-       return accessory(un, trois);
+        alert("*gracefully shuffles outside*");
+        return questaire(begin = prompt("Alright...there's Apple, Google, and Microsoft; 'The (somewhat) Big Three.' Where to?"));
     }
 }
 
-//the accesory function; included in repeat() due to redundant nature.
+//the accesory function; included in repeat() due to redundant nature. funds will take in (hopefully) uno, access is for accessories
 var accessory = function(funds, access) {
     let third = prompt("Now there's accesories. They cost " + access + " bucks a pop. Should I buy one?");
     while(par(third) == "yes") {
@@ -69,6 +73,7 @@ var accessory = function(funds, access) {
         third = prompt("How about another?");
     } 
     if(par(third) == "no") {
+        alert("*gracefully shuffles outside*");
         questaire(begin = prompt("Alright...there's Apple, Google, and Microsoft; 'The (somewhat) Big Three.' Where to?"));
      }
 }

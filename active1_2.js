@@ -87,7 +87,7 @@ var accessory = function(funds, access) {
 
 //function that cycles through commerce-related questions
 var questaire = function(start) {
-    let begin = prompt("Alright...there's Apple, Google, and Microsoft; 'The (somewhat) Big Three.' Where to first?");
+    let begin = prompt("Alright...there's Apple, Google, and Microsoft; 'The (somewhat) Big Three.' Where to?");
     if(par(begin) == "apple"){
         cycle(start, phone.app, acc.appacc, "iPhone Xs");
         } else if(par(begin) == "google") {

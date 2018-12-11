@@ -5,7 +5,7 @@ family the phone belongs to. If they reach their spending threshold for phones (
 prompted to purchase what little accesories they can (the acceroies must belong to the respective phone brand). Once they
 cannot purchase anymore phones or accerories, the 'mini-game' ends.*/
 
-/*Create a function that prevents uno's numerical value from reseting each time questaire() is called!*/
+//Create a receipt function! If at all possible, make to where you can present it to your boss when you're finished/run out of funds. 
 
 // main function for initializing taxes.
 var tax =  function(og) {
@@ -28,30 +28,56 @@ let par = function (word) {
     return word.toLowerCase()
 }
 
-//creates limit 
 const limit = 200.00
 
-//phone prices
 var phone = {
     app : sum(200.00),
     goog : sum(150.00),
     micro : sum(100.00)
 }
 
-//accesory pricing (didn't see the need to give Microsoft a more expensive acc).
+//accesory pricing.
 var acc =  {
     appacc : sum(60.00),
     googacc : sum(50.00),
     micracc : sum(30.00) 
 }
 
+//probably going to create a class out of this (once I learn how it works)
+alert("b0ss: So after getting that...'lovely' memo from Arnold the other day, I've come to a realization that our company needs phones");
+alert("b0ss: With that being said and done, I don't have the time to be concerned about the nuances of phone specs, which is why I'm sending you");
+alert("me: *gulps* ");
+var uno = prompt("b0ss: So how much is a good amount to purchase at least ten phones?");
+while(uno > 5000 || uno < 2000) {
+    alert("b0ss: *sigh* c'mon don't be ridiculous, I wasn't born yesterday.");
+    uno = prompt("So how much do ya need?");
+}
+alert("b0ss: *hands you $" + uno + " dollars* ");
+alert("b0ss: Great. Don't be afraid to purchase any accesories for the phones as well, so long as you can afford it ;)'");
+
+questaire(uno);
+
+//function that cycles through commerce-related questions
+var questaire = function(start) {
+    let begin = prompt("Alright...there's Apple, Google, and Microsoft; 'The (somewhat) Big Three.' Where to?");
+    if(par(begin) == "apple"){
+        cycle(start, phone.app, acc.appacc, "iPhone Xs");
+        } else if(par(begin) == "google") {
+            cycle(start, phone.goog, acc.googacc, "Pixel 3");
+        } else if(par(begin) == "microsoft") {
+            cycle(start, phone.micro, acc.micracc, "Lumia 950 XL");
+        } else {
+            alert("I should be sure to choose one of those options");
+            questaire(uno);
+        }
+}
 
 //the real juice of the 'bases'. un: funds, deux: phone, trois: accessories, quatre: phone title.
 var cycle = function(un, deux, trois, quatre) {
     let glance = prompt("The new " + quatre + " looks nice. But is it worth it?");
     while(par(glance) == "yes") {
         un -= deux + tax(deux);
-        alert("You have $" + un + " left in your spending funds.");
+        alert("You have $" + un.toFixed() + " left in your spending funds.");
         let look = prompt("Should I buy another " + quatre + " ?");
         if(par(look) == "no"){
             return accessory(un, trois);
@@ -59,7 +85,7 @@ var cycle = function(un, deux, trois, quatre) {
     }
     if(par(glance) == "no") {
         alert("*gracefully shuffles outside*");
-        alert("I now have " + un + " left to spend with");
+        alert("I now have " + un.toFixed() + " left to spend with");
         return questaire(un);
     } else {
         alert("I need to make up my mind about this...");
@@ -84,32 +110,3 @@ var accessory = function(funds, access) {
             return accessory(funds, access);
         }
 }
-
-//function that cycles through commerce-related questions
-var questaire = function(start) {
-    let begin = prompt("Alright...there's Apple, Google, and Microsoft; 'The (somewhat) Big Three.' Where to?");
-    if(par(begin) == "apple"){
-        cycle(start, phone.app, acc.appacc, "iPhone Xs");
-        } else if(par(begin) == "google") {
-            cycle(start, phone.goog, acc.googacc, "Pixel 3");
-        } else if(par(begin) == "microsoft") {
-            cycle(start, phone.micro, acc.micracc, "Lumia 950 XL");
-        } else {
-            alert("I should be sure to choose one of those options");
-            questaire(uno);
-        }
-}
-
-//probably going to create a class out of this (once I learn how it works)
-alert("b0ss: So after getting that...'lovely' memo from Arnold the other day, I've come to a realization that our company needs phones");
-alert("b0ss: With that being said and done, I don't have the time to be concerned about the nuances of phone specs, which is why I'm sending you");
-alert("me: *gulps* ");
-var uno = prompt("b0ss: So how much is a good amount to purchase at least ten phones?");
-while(uno > 5000 || uno < 2000) {
-    alert("b0ss: *sigh* c'mon don't be ridiculous, I wasn't born yesterday.");
-    uno = prompt("So how much do ya need?");
-}
-alert("b0ss: *hands you $" + uno + " dollars* ");
-alert("b0ss: Great. Don't be afraid to purchase any accesories for the phones as well, so long as you can afford it ;)'");
-
-questaire(uno);

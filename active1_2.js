@@ -3,9 +3,10 @@ on funds provided by their 'boss'. They are given the choice to shop for phones 
 three different brands: Apple, Google, and Microsoft; depending on which company they choose determines the price and 
 family the phone belongs to. If they reach their spending threshold for phones (dependent on the company), they will be
 prompted to purchase what little accesories they can (the acceroies must belong to the respective phone brand). Once they
-cannot purchase anymore phones or accerories, the 'mini-game' ends.*/
+cannot purchase anymore phones or accerories, the 'mini-game' will (eventually) end.*/
 
-/*...might as well create a mockup e-commerce website that tracks purchases...either that or make a mini-game that focuses on purchasing a ceratin amoiunt of phones*/
+/*...might as well create a mockup e-commerce website that tracks purchases...either 
+that or make a mini-game that focuses on purchasing a ceratin amount of phones*/
 
 /*Create a receipt function! If at all possible, make to where you can present it to your boss when you're finished/run out of funds.
 While you're at it, give the user more freedom in what they say for options. */

@@ -5,7 +5,10 @@ family the phone belongs to. If they reach their spending threshold for phones (
 prompted to purchase what little accesories they can (the acceroies must belong to the respective phone brand). Once they
 cannot purchase anymore phones or accerories, the 'mini-game' ends.*/
 
-//Create a receipt function! If at all possible, make to where you can present it to your boss when you're finished/run out of funds. 
+/*...might as well create a mockup e-commerce website that tracks purchases...either that or make a mini-game that focuses on purchasing a ceratin amoiunt of phones*/
+
+/*Create a receipt function! If at all possible, make to where you can present it to your boss when you're finished/run out of funds.
+While you're at it, give the user more freedom in what they say for options. */
 
 // main function for initializing taxes.
 var tax =  function(og) {
@@ -15,20 +18,21 @@ var tax =  function(og) {
 }
 
 //adds tax deducted price and dollar sign to items.
-var sum = function(add, sub){
-    let total = add - sub;
-    if(sub === undefined){
-        return add;
+var sum = function(prime, segundo){
+    let total = prime + segundo;
+    if(segundo === undefined){
+        return prime;
     }
     return total;
 }
 
-//makes the process of comparing prompts less tedious. 
-let par = function (word) {
-    return word.toLowerCase()
-}
+//makes the process of comparing prompts less tedious.  
+var par = word => word.toLowerCase();
 
-const limit = 200.00
+//makes rounding numbers much easier
+var dos = num => num.toFixed(2);
+
+const limit = 200.00;
 
 var phone = {
     app : sum(200.00),
@@ -42,20 +46,6 @@ var acc =  {
     googacc : sum(50.00),
     micracc : sum(30.00) 
 }
-
-//probably going to create a class out of this (once I learn how it works)
-alert("b0ss: So after getting that...'lovely' memo from Arnold the other day, I've come to a realization that our company needs phones");
-alert("b0ss: With that being said and done, I don't have the time to be concerned about the nuances of phone specs, which is why I'm sending you");
-alert("me: *gulps* ");
-var uno = prompt("b0ss: So how much is a good amount to purchase at least ten phones?");
-while(uno > 5000 || uno < 2000) {
-    alert("b0ss: *sigh* c'mon don't be ridiculous, I wasn't born yesterday.");
-    uno = prompt("So how much do ya need?");
-}
-alert("b0ss: *hands you $" + uno + " dollars* ");
-alert("b0ss: Great. Don't be afraid to purchase any accesories for the phones as well, so long as you can afford it ;)'");
-
-questaire(uno);
 
 //function that cycles through commerce-related questions
 var questaire = function(start) {
@@ -76,8 +66,8 @@ var questaire = function(start) {
 var cycle = function(un, deux, trois, quatre) {
     let glance = prompt("The new " + quatre + " looks nice. But is it worth it?");
     while(par(glance) == "yes") {
-        un -= deux + tax(deux);
-        alert("You have $" + un.toFixed() + " left in your spending funds.");
+        un -= sum(deux, tax(deux));
+        alert("I have $" + dos(un) + " left to spend with.");
         let look = prompt("Should I buy another " + quatre + " ?");
         if(par(look) == "no"){
             return accessory(un, trois);
@@ -85,7 +75,7 @@ var cycle = function(un, deux, trois, quatre) {
     }
     if(par(glance) == "no") {
         alert("*gracefully shuffles outside*");
-        alert("I now have " + un.toFixed() + " left to spend with");
+        
         return questaire(un);
     } else {
         alert("I need to make up my mind about this...");
@@ -97,7 +87,7 @@ var cycle = function(un, deux, trois, quatre) {
 var accessory = function(funds, access) {
     let third = prompt("Now there's accesories. They cost " + access + " bucks a pop. Should I buy one?");
     while(par(third) == "yes") {
-        funds -= access + (tax(access));
+        funds -= sum(access, tax(access));
         alert("you have $" + funds.toFixed() + " left to spend with");
         third = prompt("How about another?");
     } 
@@ -110,3 +100,17 @@ var accessory = function(funds, access) {
             return accessory(funds, access);
         }
 }
+
+//probably going to create a class out of this (once I learn how it works)
+alert("b0ss: So after getting that...'lovely' memo from Arnold the other day, I've come to a realization that our company needs phones");
+alert("b0ss: With that being said and done, I don't have the time to be concerned about the nuances of phone specs, which is why I'm sending you");
+alert("me: *gulps* ");
+var uno = prompt("b0ss: So how much is a good amount to purchase at least ten phones?");
+while(uno > 5000 || uno < 2000) {
+    alert("b0ss: *sigh* c'mon don't be ridiculous, I wasn't born yesterday.");
+    uno = prompt("So how much do ya need?");
+}
+alert("b0ss: *hands you $" + uno + " dollars* ");
+alert("b0ss: Great. Don't be afraid to purchase any accesories for the phones as well, so long as you can afford it ;)'");
+
+questaire(uno);

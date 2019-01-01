@@ -76,7 +76,7 @@ var cycle = function(un, deux, trois, quatre) {
     }
     if(par(glance) == "no") {
         alert("*gracefully shuffles outside*");
-        
+        alert("hmm...looks like I have $" + dos(un) + " left to spend with");
         return questaire(un);
     } else {
         alert("I need to make up my mind about this...");
@@ -94,7 +94,7 @@ var accessory = function(funds, access) {
     } 
     if(par(third) == "no"){
         alert("*gracefully shuffles outside*");
-        alert("I now have " + funds.toFixed() + " left to spend with");
+        alert("hmm...looks like I have $" + dos(funds) + " left to spend with");
         return questaire(funds);
         } else {
             alert("I need to make up my mind about this...");
@@ -103,11 +103,11 @@ var accessory = function(funds, access) {
 }
 
 //probably going to create a class out of this (once I learn how it works)
-alert("b0ss: So after getting that...'lovely' memo from Arnold the other day, I've come to a realization that our company needs phones");
+alert("b0ss: So after getting that...'lovely' memo from Arnold the other day, I've come to a realization that our company is in need of newer phones");
 alert("b0ss: With that being said and done, I don't have the time to be concerned about the nuances of phone specs, which is why I'm sending you");
 alert("me: *gulps* ");
 var uno = prompt("b0ss: So how much is a good amount to purchase at least ten phones?");
-while(uno > 5000 || uno < 2000) {
+while((uno > 5000 || uno < 2000) && isNaN(uno)) {
     alert("b0ss: *sigh* c'mon don't be ridiculous, I wasn't born yesterday.");
     uno = prompt("So how much do ya need?");
 }

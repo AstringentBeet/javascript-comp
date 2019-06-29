@@ -48,7 +48,7 @@ var acc =  {
     micracc : sum(30.00) 
 }
 
-//function that cycles through commerce-related questions
+//function that cycles through commerce-related questions; directly related to the cycle function.
 var questaire = function(start) {
     let begin = prompt("Alright...there's Apple, Google, and Microsoft; 'The (somewhat) Big Three.' Where to?");
     if(par(begin) == "apple"){
